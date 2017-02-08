@@ -1,0 +1,7 @@
+function y = get_function(bc0, bc1, h, f)
+
+if f == 1
+el
+
+end
+
