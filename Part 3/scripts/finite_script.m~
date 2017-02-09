@@ -20,11 +20,11 @@ h = 1/N;
 k = h^2 * v;
 
 % Set Initial condition
-res(:, 1) = get_function(N, h, 1)';
+res(:, 1) = get_function(N, h, 3)';
 
 % Set boundary conditions
-res(1, :) = sin(2*pi*(0:m)/m)/2+0.5;
-res(N+1, :) = sin(2*pi*(0:m)/m)/2+0.5;
+res(1, :) = sin(2*pi*(0:k:1))/2+1;
+res(N+1, :) = zeros(1, m+1);
 
 % Calculate M+1 and plot it continuously
 for c = 1:m
