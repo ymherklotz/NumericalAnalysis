@@ -23,8 +23,8 @@ k = h^2 * v;
 res(:, 1) = get_function(N, h, 1)';
 
 % Set boundary conditions
-res(1, :) = sin(2*pi*(0:m)/m)/2+0.5;
-res(N+1, :) = sin(2*pi*(0:m)/m)/2+0.5;
+res(1, :) = ones(1, m+1);
+res(N+1, :) = ones(1, m+1);
 
 % Calculate M+1 and plot it continuously
 for c = 1:m
@@ -49,7 +49,7 @@ hold off;
 
 xlabel('x');
 ylabel('y');
-title('Plots of 1D Heat equation over time, bc = 0');
+title('Plots of 1D Heat equation over time, bc = 1');
 legend('m = 0', 'm = 100', 'm = 200', 'm = ...', 'm = 5000');
 
 % Plot 3D
@@ -62,6 +62,6 @@ surf(X, Y, Z);
 xlabel('time / t');
 ylabel('x');
 zlabel('y');
-title('3D plot of 1D Heat equation over time, bc = 0');
+title('3D plot of 1D Heat equation over time, bc = 1');
 
 
