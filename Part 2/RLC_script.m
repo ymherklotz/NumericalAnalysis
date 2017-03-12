@@ -19,15 +19,15 @@ Vout = zeros(1, N);
 %Vin = @(t)5*heaviside(t);
 
 %%Impulse with Exponential Decay
-%Tau = 3*(10^-6);
-%Vin = @(t)5*exp(-(t^2)/Tau);
+Tau = 3*(10^-6);
+Vin = @(t)5*exp(-(t.^2)/Tau);
 
 %%Square Wave (5Hz, 100Hz, 500Hz)
 %Vin = @(t)5*square(2*pi*5*t);
 
 
 %%Sine Wave (5Hz, 100Hz, 500Hz)
-Vin = @(t)5*sin(2*pi*5*t);
+%Vin = @(t)5*sin(2*pi*5*t);
 
 %the coupled equation
 func1 = @(t, qc, qc_dash)qc_dash; 
@@ -55,4 +55,3 @@ plot(t, Vout);
 xlabel('Time');
 ylabel('Amplitude');
 end
-
