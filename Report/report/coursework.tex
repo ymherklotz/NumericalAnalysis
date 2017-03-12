@@ -1,0 +1,179 @@
+\documentclass[12pt,twoside]{article}
+
+\newcommand{\reporttitle}{Numerical Analysis of ODEs using Matlab}
+\newcommand{\reportauthor}{Mwana}
+\newcommand{\reportauthora}{Aufar}
+\newcommand{\reportauthorb}{Zihan}
+\newcommand{\reportauthorc}{Calvin}
+\newcommand{\reportauthord}{Yann Herklotz}
+\newcommand{\reporttype}{Mathematics Coursework}
+\newcommand{\email}{}
+\newcommand{\emaila}{apl115@ic.ac.uk}
+\newcommand{\emailb}{}
+\newcommand{\emailc}{}
+\newcommand{\emaild}{ymh15@ic.ac.uk}
+
+% include files that load packages and define macros
+\input{includes} % various packages needed for maths etc.
+\input{notation} % short-hand notation and macros
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+% front page
+\input{titlepage}
+
+\tableofcontents
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% Main document
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% Introduction
+
+\newpage
+\section{Introduction}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% Part 1
+
+\newpage
+\section{RL Circuit}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% Part 2: Exercise 3: RLC Circuit
+
+\newpage
+\section{RLC Circuit}
+
+\subsection{RLC Circuit Equation}
+
+An RLC circuit consists of a resistor, capacitor and an inductor. For the purpose of this example, we have a series RLC circuit, as shown in the figure below.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width = 8cm]{./figures/RLC.PNG}\\[0.01cm]
+\caption{Series RLC Circuit}
+\end{figure}
+
+By applying Kirchoff's Voltage Law for each of the three components of the circuit, we can obtain the differential equation representing the circuit.
+
+\[
+V_{R} + V_{L} + V_{C} = V_{in}(t)
+\]
+
+\[
+L \frac{d}{dt}i_{L}(t) + R i_{L}(t) + \frac{1}{C} \int_0^t i_{L}(\tau) \,d\tau = V_{in}(t)
+\]
+
+\[
+L \frac{d^2}{dt^2} q_{C}(t) + R \frac{d}{dt} q_{C}(t) + \frac{1}{C}  q_{C}(t) = V_{in}(t)
+\]
+
+We assume that the capacitor is pre-charged at time t = 0, with q$_{\text{C}}$(0) = 500nC. We also assume that no current flows through the inductor at time t = 0, so i$_{\text{L}}$(0) = $\frac{d}{dt}q_{\text{C}}$(0) = 0A.
+
+We were also given the values of resistances, capacitance and inductance of the components in the circuit:
+
+\begin{center}
+R = 250$\Omega$, C = 3$\mu$F, L = 650mH 
+\end{center}
+
+\subsection{Runge-Kutta and Coupled Equations}
+\subsubsection{Runge-Kutta}
+Runge-Kutta 4th order method is a numerical technique used to solve ordinary differential equations of the form $\frac{dy}{dx} = f(x,y)$, where y(0) = y$_{\text{0}}$. Therefore, we can only use it to solve first order ordinary differential equations.
+
+\subsubsection{Coupled Equations}
+In order to solve the RLC equation derived earlier, we need to rewrite the equation in a \textit{coupled} form. We take the equation:
+\[
+L \frac{d^2}{dt^2} q_{C}(t) + R \frac{d}{dt} q_{C}(t) + \frac{1}{C}  q_{C}(t) = V_{in}(t)
+\]
+
+By letting  y = $\frac{d}{dt}q_{C}(t)$ = $\dot{q}$ and  = $\frac{d^2}{dt^2}q_{C}(t)$ = $\ddot{q}$, we can do:
+
+\[
+L\ddot{q} + R\dot{q} + \frac{1}{C}q = V_{in}
+\]
+
+\[
+L
+\]
+
+\subsection{Matlab Script}
+
+\subsubsection{Runge-Kutta 3/8}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% Part 3: Exercise 4: Finite Differences for PDE
+
+\newpage
+\section{Finite Differences for PDE}
+
+\subsection{1-D Heat Equation}
+
+The 1-D heat equation \\
+
+\[
+\frac{\partial y}{\partial t} = \frac{\partial ^2 y}{\partial x^2},\quad 0 < x < 1,\quad t > 0
+\]\\
+
+with zero boundary conditions \( y(0, t) = y(1, t) = 0 \) and initial conditions \\
+\( y(x, 0) = y_0(x) \) can be solved numerically using the finite difference method.
+
+
+\subsection{Method}
+
+The finite difference method consists of approximating a differential equation using difference equations. As the 
+1-D heat equation has depends on \( x \) and \( t \) we can use the finite difference method to approximate the heat
+equation when \( t = 0 \) and then increment \( t \) to get the heat equation as it changes over time. 
+
+
+\subsection{Matlab Script}
+
+There were certain aspects of the finite difference method that had to be considered when implementing it in Matlab.
+We had to find the right values that would give the precision that we wanted and display the results properly. We used a
+\( (N+1) \times (m+1) \) matrix to store all the results from the finite difference method. The matrix has 1 added to \( N \) and
+\( m \) because Matlab starts its index at 1 and we want to go from \( 0..N \) and from \( 0..m \).
+
+\subsubsection{Boundary Conditions}
+
+First of all, we had to find a way of adding the boundary conditions that we wanted to the the finite differences method
+and still be able to change these easily, because we had to test different ones. We solved this by writing a function that enabled us
+to choose the function that we wanted to use as a boundary condition. To this Matlab function we could then easily add more functions
+that could then be used as a boundary condition and we could easily test these boundary conditions. The boundary conditions 
+can also be expressed as \( U_0^m,\ U_N^m \). This means we just have to set all the numbers at index 1 and index \( N+1 \) to 
+be equal to the initial condition. This way we can also set the initial condition to be a different constant, or even an equation that
+changes with time.
+
+
+\subsubsection{Central Algorithm}
+
+The main part of the finite difference method is the central algorithm, as this is the algorithm that is derived from the approximations
+of the initial differential equation that we want to solve. 
+
+The central algorithm for the 1-D heat equation is
+
+\[
+U_{j}^{m+1} =\ v U_{j-1}^{m} + (1 - 2 v) U_{j}^{m} + v U_{j+1}^{m}
+\]\\
+
+We want to implement this algorithm for every value of from \( 0..m \) and every value from \( 0..N \). This can be done by using two 
+for loops that will iterate over the matrix, and for every \( m \), to get \( m+1 \) we will pass the required values to the equation.
+
+As we have a matrix with all the previous values that have been calculated, we can use it to get the values of \( U_{j-1}^m,\ U_j^m,\ 
+U_{j+1}^m \) directly from the matrix. 
+
+
+\subsubsection{Choosing Constants}
+
+\subsubsection{Plotting Results}
+
+
+\subsection{Solving the Heat Equation}
+
+\subsubsection{Tent Function Initial Condition}
+
+\subsubsection{Sinusoidal Function}
+
+
+\section{Bonus}
+
+
+\end{document}
