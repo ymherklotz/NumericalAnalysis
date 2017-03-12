@@ -42,18 +42,9 @@ title('(Heaviside) V_{out} versus time');
 
 %---------------------------------------------------------------------------------------------
 
-%initailise the circuits 
-R = 0.5;
-L = 1.5*10^(-3);
-h = 0.00001; %step size
+%initailise the circuits at the top
 
-
-%initailise the container 
-
-N = round(tf/h); %number of iterations
-t = zeros(1, N);
-Vout = zeros(1, N);
-current = zeros(1,N);
+%initailise the container at the top
 
 %input voltage
 tau = 0.000150;
@@ -86,18 +77,9 @@ title('(Exponential #1) V_{out} versus time');
 
 %-----------------------------------------------------------------------------------------------
 
-%initailise the circuits 
-R = 0.5;
-L = 1.5*10^(-3);
-h = 0.00001; %step size
+%initailise the circuits at the top
 
-
-%initailise the container 
-
-N = round(tf/h); %number of iterations
-t = zeros(1, N);
-Vout = zeros(1, N);
-current = zeros(1,N);
+%initailise the container at the top
 
 %input voltage
 tau = 0.000150;
@@ -132,13 +114,10 @@ title('#(Exponential #2) V_{out} versus time');
 %-------------------------------------------------------------------------------------------
 
 
-%initailise the circuits 
-R = 0.5;
-L = 1.5*10^(-3);
-h = 0.00001; %step size
+%initailise the circuits at the top
 
 
-%initailise the container 
+%initailise the container at the top
 
 N = round(tf/h); %number of iterations
 t = zeros(1, N);
@@ -174,18 +153,11 @@ title('(Sine wave) V_{out} versus time ');
 
 %-----------------------------------------------------------------------------------------
 
-%initailise the circuits 
-R = 0.5;
-L = 1.5*10^(-3);
-h = 0.00001; %step size
+%initailise the circuits at the top
 
 
 %initailise the container 
 
-N = round(tf/h); %number of iterations
-t = zeros(1, N);
-Vout = zeros(1, N);
-current = zeros(1,N);
 
 %input voltage
 % step function of 5 volt
@@ -218,18 +190,9 @@ ylabel({'V_{out}', '(volt)'});
 title('(Square wave) V_{out} versus time');
 
 %--------------------------------------------------------------------------------------
-%initailise the circuits 
-R = 0.5;
-L = 1.5*10^(-3);
-h = 0.00001; %step size
+%initailise the circuits at the top
 
-
-%initailise the container 
-
-N = round(tf/h); %number of iterations
-t = zeros(1, N);
-Vout = zeros(1, N);
-current = zeros(1,N);
+%initailise the container at the top
 
 %input voltage
 % step function of 5 volt
