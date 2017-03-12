@@ -3,6 +3,8 @@
 
 clear;
 
+steps = 100;
+
 % Set the number of samples to take
 N = 150;
 
@@ -20,11 +22,11 @@ h = 1/N;
 k = h^2 * v;
 
 % Set Initial condition
-res(:, 1) = get_function(N, h, 1)';
+res(:, 1) = get_function(N, h, 3)';
 
 % Set boundary conditions
-res(1, :) = ones(1, m+1);
-res(N+1, :) = ones(1, m+1);
+res(1, :) = zeros(1, m+1);
+res(N+1, :) = zeros(1, m+1);
 
 % Calculate M+1 and plot it continuously
 for c = 1:m
@@ -35,10 +37,10 @@ end
 
 % Plot 2D
 figure;
-Z = zeros(N+1, m/50+1);
+Z = zeros(N+1, m/steps+1);
 count = 1;
 for i = 1:m+1
-    if rem(i, 50) == 1
+    if rem(i, steps) == 1
         plot(0:h:1, res(:, i));
         Z(:, count) = res(:, i);
         hold on;
@@ -54,7 +56,7 @@ legend('m = 0', 'm = 100', 'm = 200', 'm = ...', 'm = 5000');
 
 % Plot 3D
 figure;
-x = (0:m/50) / (m/50);
+x = (0:m/steps) / (m/steps);
 y = (0:N) / N;
 [X,Y] = meshgrid(x, y);
 surf(X, Y, Z);

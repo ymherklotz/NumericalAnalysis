@@ -14,8 +14,12 @@ if f == 1
     end
 elseif f == 2
     y = sin(2*pi*(0:h:1));
-else
+elseif f == 3
     y = abs(sin(2*pi*(0:h:1)));
+elseif f == 4
+    %add func
+elseif f == 5
+    %add
 end
 
 end
