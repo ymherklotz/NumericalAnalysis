@@ -18,13 +18,14 @@ func = @(t, iout) (vin(t) - iout*R) / L;      % define func
 vout = vin(t) - iout * R;
 
 %obtaining the exact solution with favorite method
-exact= @(t) 0.07553*cos( 41883.7*(t) ) + 0.94901*sin( 41883.7*(t) ); % works for arrays
-
+i_{Exact} = g*(w*sin(w*t) + k*cos(w*t) - k*exp(-k*t))/(w^2 + k^2);
+exact = vin(t) - R*i_{Exact};
 %error as a function of t
-error=exact-vout; 
+error= exact - vout; 
 
 figure(1);
 plot(t,error); %for heun
 loglog(error);
 
 end
+
