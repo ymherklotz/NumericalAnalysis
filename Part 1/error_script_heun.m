@@ -18,7 +18,7 @@ func = @(t, iout) (vin(t) - iout*R) / L;      % define func
 vout = vin(t) - iout * R;
 
 %obtaining the exact solution with favorite method
-i_{Exact} = g*(w*sin(w*t) + k*cos(w*t) - k*exp(-k*t))/(w^2 + k^2);
+i_{Exact} = (V_{initial_in}/L)*((2*pi)/T * sin((2*pi)/T*t) + (R/L)*cos((2*pi)/T*t) - (R/L)*exp(-(R/L)*t))/((2*pi)/T^2 + (R/L)^2);
 exact = vin(t) - R*i_{Exact};
 %error as a function of t
 error= exact - vout; 
