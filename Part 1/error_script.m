@@ -70,7 +70,7 @@ figure(5);
 for k = 1:5
     
     [t, iout] = ralston(func, ts, tf, is, h);
-    exact = vin(t) - R*i_Exact;
+    exact = vin(t) - R*i_Exact(t);
     vout = vin(t) - R*iout;
     error = abs(exact - vout); 
     max_error = max(error);
