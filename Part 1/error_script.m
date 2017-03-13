@@ -57,7 +57,7 @@ i_Exact = @(t) (6/L)*((2*pi)/T * sin((2*pi)/T*t) + (R/L)*cos((2*pi)/T*t) - (R/L)
 exact = vin(t) - R*i_Exact(t);
 
 %error as a function of t
-error(t) = abs(exact(t) - vout(t)); 
+error = abs(exact - vout); 
 
 figure(3);
 plot(t,error); %for ralston
