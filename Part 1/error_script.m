@@ -19,6 +19,8 @@ vout = vin(t) - iout * R;
 
 %obtaining the exact solution with favorite method
 exact= @(t) 0.07553*cos( 41883.7*(t) ) + 0.94901*sin( 41883.7*(t) ); % works for arrays
+%exact = Vin0 - R*((Vin0/R) * (1 - exp(-(R/L)*ta)));  %Vin0 is the initial value of Vin, ta is the value of t
+
 
 %error as a function of t
 error = @(t) exact(t) -vout; 
