@@ -18,8 +18,10 @@ elseif f == 3
     y = abs(sin(2*pi*(0:h:1)));
 elseif f == 4
     %add func
+    y = 5*asinh(2*pi*(0:h:1));
 elseif f == 5
     %add
+    y = 5*exp(-5*(0:h:1)); % exponential 
 end
 
 end
