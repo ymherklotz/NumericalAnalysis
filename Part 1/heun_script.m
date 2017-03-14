@@ -14,7 +14,7 @@ Vout = zeros(1, N);
 current = zeros(1,N);
 
 %input voltage
-% step function of 5 volt
+% step function of 3.5 volt
 Vin = @(t)3.5*heaviside(t); 
 
 %the initial condition
@@ -39,6 +39,12 @@ plot(Vout);
 xlabel({'Time', '(seconds)'});
 ylabel({'V_{out}', '(volt)'});
 title('(Heaviside) V_{out} versus time');
+
+figure(8);
+plot(t, current);
+xlabel({'Time', '(seconds)'});
+ylabel({'V_{out}', '(volt)'});
+title('V_{out} versus time (Heaviside)');
 
 %---------------------------------------------------------------------------------------------
 
@@ -73,11 +79,9 @@ figure(2);
 plot(Vout);
 xlabel({'Time', '(seconds)'});
 ylabel({'V_{out}', '(volt)'});
-title('(Exponential #1) V_{out} versus time');
+title('V_{out} versus time (Exponential square function #1)');
 
 %-----------------------------------------------------------------------------------------------
-
-%initailise the circuits at the top
 
 %initailise the container at the top
 
@@ -108,10 +112,10 @@ figure(3);
 plot(Vout);
 xlabel({'Time', '(seconds)'});
 ylabel({'V_{out}', '(volt)'});
-title('#(Exponential #2) V_{out} versus time');
+title('V_{out} versus time (Exponential #2)');
 
 
-%-------------------------------------------------------------------------------------------
+% %-------------------------------------------------------------------------------------------
 
 
 %initailise the circuits at the top
@@ -126,7 +130,9 @@ current = zeros(1,N);
 
 %input voltage
 % step function of 5 volt
-Vin = @(t)4*sin(2*pi*6000*t);
+% T= 0.00015, 0.000015, 0.0004, 0.0011
+T = 0.0011;
+Vin = @(t)4*sin(2*pi*t/T);
 
 %the initial condition
 t(1) = 0;
@@ -149,7 +155,7 @@ figure(4);
 plot(Vout);
 xlabel({'Time', '(seconds)'});
 ylabel({'V_{out}', '(volt)'});
-title('(Sine wave) V_{out} versus time ');
+title('V_{out} versus time (T=0.0011)(Sine wave)');
 
 %-----------------------------------------------------------------------------------------
 
@@ -162,7 +168,7 @@ title('(Sine wave) V_{out} versus time ');
 %input voltage
 % step function of 5 volt
 A = 4;
-T = 0.0015;
+T = 0.0011;
 
 Vin = @(t) A * square(2*pi*t/T);
 
@@ -187,7 +193,7 @@ figure(5);
 plot(Vout);
 xlabel({'Time', '(seconds)'});
 ylabel({'V_{out}', '(volt)'});
-title('(Square wave) V_{out} versus time');
+title('V_{out} versus time (T=0.0011) (Square wave)');
 
 %--------------------------------------------------------------------------------------
 %initailise the circuits at the top
@@ -197,7 +203,7 @@ title('(Square wave) V_{out} versus time');
 %input voltage
 % step function of 5 volt
 A = 4;
-T = 0.0015;
+T = 0.000015;
 
 Vin = @(t) A * sawtooth(2*pi*t/T);
 
@@ -222,6 +228,6 @@ figure(6);
 plot(Vout);
 xlabel({'Time', '(seconds)'});
 ylabel({'V_{out}', '(volt)'});
-title('(Sawtooth wave) V_{out} versus time');
+title('V_{out} versus time (T=0.0011) (Sawtooth wave)');
 
 end
