@@ -1,1 +1,2 @@
-# Maths Numerical Analysis of ODEs using Matlab - Coursework 2017
+# Part 1
+Includes exercise 1 and 2
