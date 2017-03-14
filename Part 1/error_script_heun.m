@@ -18,14 +18,28 @@ func = @(t, iout) (vin(t) - iout*R) / L;      % define func
 vout = vin(t) - iout * R;
 
 %obtaining the exact solution with favorite method
-i_{Exact} = (V_{initial_in}/L)*((2*pi)/T * sin((2*pi)/T*t) + (R/L)*cos((2*pi)/T*t) - (R/L)*exp(-(R/L)*t))/((2*pi)/T^2 + (R/L)^2);
-exact = vin(t) - R*i_{Exact};
+i_Exact = @(t) (6/L)*((2*pi)/T * sin((2*pi)/T*t) + (R/L)*cos((2*pi)/T*t) - (R/L)*exp(-(R/L)*t))/((2*pi)/T^2 + (R/L)^2);
+exact = vin(t) - R*i_Exact(t);
 %error as a function of t
-error= exact - vout; 
+error = abs(exact - vout); 
 
 figure(1);
 plot(t,error); %for heun
-loglog(error);
+%loglog(error);
+
+figure(5);
+for ind=3:16 % choose these carefully
+ h1=2^(-ind); % set stepsize
+ 
+ 
+    [t, iout] = heun(func, ts, is, h1);
+    exact = vin(t) - R*i_Exact(t)  ;
+    vout = vin(t) - R*iout;
+    error = max(abs(exact - vout)); 
+    
+    plot(log(h1),log(error),'b*'); % log/log plot stepsize vs error
+    hold on; % for next value to be plotted
+end
 
 end
 

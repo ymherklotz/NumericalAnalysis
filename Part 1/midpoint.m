@@ -1,8 +1,10 @@
 function [ x, y ] = midpoint( f, t0, tfinal, y0, h)
 
 N = round((tfinal - t0) / h);
-ya = zeros(1,N); ta = zeros(1,N);
-ya(1) = y0; ta(1) = t0;
+ya = zeros(1,N);
+ta = zeros(1,N);
+ya(1) = y0; 
+ta(1) = t0;
 
 for i = 1 : N - 1
     ta(i+1) = ta(i) + h;

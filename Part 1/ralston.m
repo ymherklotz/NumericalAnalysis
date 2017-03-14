@@ -1,15 +1,18 @@
-function [t,vout] = ralston(func, t0, tf,i0 , h)
+function [xa,ya] = ralston(func, t0, tf,i0 , h)
 
-n = ((tf - t0) / h);
+N = round((tf) / h);
+xa = zeros(1,N);
+ya = zeros(1,N);
+xa(1)=t0;
+ya(1)=i0;
+
+%param
 a1=1/3;
 a2=2/3;
 p1=3/4;
 q11=3/4;
 
-xa(1)=t0;
-ya(1)=i0;
-
-for i=1:1:n
+for i=1: N - 1
     xtemp=xa(i);
     ytemp=ya(i); 
     
@@ -20,6 +23,3 @@ k2=func(xtemp+p1*h,ytemp+q11*k1*h);
 ya(i+1)=ytemp+(a1*k1+a2*k2)*h;
 xa(i+1)=xtemp+h;
 end
-
-t = xa;
-vout = ya;
