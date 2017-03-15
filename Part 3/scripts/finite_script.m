@@ -3,13 +3,13 @@
 
 clear;
 
-steps = 100;
+steps = 300;
 
 % Set the number of samples to take
 N = 150;
 
 % Set the total time to run
-m = 5000;
+m = 3000;
 
 % Declare final size of matrix for speed
 res = zeros(N+1, m+1);
@@ -22,11 +22,14 @@ h = 1/N;
 k = h^2 * v;
 
 % Set Initial condition
-res(:, 1) = get_function(N, h, 3)';
+res(:, 1) = get_function(N, h, 2)';
 
 % Set boundary conditions
-res(1, :) = zeros(1, m+1);
-res(N+1, :) = zeros(1, m+1);
+%res(1, :) = zeros(1, m+1);
+%res(N+1, :) = zeros(1, m+1);
+
+res(1, :) = sin(2*pi*(0:1/m:1));
+res(N+1, :) = sin(2*pi*(0:1/m:1));
 
 % Calculate M+1 and plot it continuously
 for c = 1:m
@@ -52,7 +55,7 @@ hold off;
 xlabel('x');
 ylabel('y');
 title('Plots of 1D Heat equation over time, bc = 1');
-legend('m = 0', 'm = 100', 'm = 200', 'm = ...', 'm = 5000');
+legend('m = 0', 'm = 500', 'm = 1000', 'm = ...', 'm = 5000');
 
 % Plot 3D
 figure;

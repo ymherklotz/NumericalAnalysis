@@ -13,7 +13,7 @@ if f == 1
         count = count + 1;
     end
 elseif f == 2
-    y = sin(2*pi*(0:h:1));
+    y = cos(2*pi*(0:h:1));
 elseif f == 3
     y = abs(sin(2*pi*(0:h:1)));
 elseif f == 4
